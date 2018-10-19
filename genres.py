@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 from lxml import etree
 from collections import defaultdict
+from datetime import datetime
 import json
 
 with open('./style-genre-map.json', 'r') as fp:
@@ -27,17 +28,21 @@ class GenreStats:
         self.stats = {}
         context = etree.iterparse(xml_path, events=("start", "end"))
         context = iter(context)
-        total = 0
+        total, added = 0, 0
         for event, element in context:
             try:
                 if element.tag == "release" and event == "end":
                     total += 1
                     if self.is_candidate(element):
+                        added += 1
                         data = self.parse_release(element)
                         self.add_stats(data)
+                    if total % 100000 == 0:
+                        print('%s - parsed %d, added %d' %  (datetime.now().isoformat(), total, added))
             except ValueError, error:
                 print error
-
+        with open('./data/results.json', 'w') as fp:
+            json.dump(self.stats, fp)
 
     def is_candidate(self, release):
         """
