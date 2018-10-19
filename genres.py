@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 from lxml import etree
+from collections import defaultdict
 
 
 class GenreStats:
@@ -20,14 +21,17 @@ class GenreStats:
         self.stats = {}
         context = etree.iterparse(xml_path, events=("start", "end"))
         context = iter(context)
-        self.total = 0
+        total = 0
         for event, element in context:
             try:
                 if element.tag == "release" and event == "end":
+                    total += 1
                     if self.is_candidate(element):
                         data = self.parse_release(element)
+                        self.add_stats(data)
             except ValueError, error:
                 print error
+
 
     def is_candidate(self, release):
         """
@@ -79,10 +83,14 @@ class GenreStats:
         genres = release.find("genres")
         if genres is not None:
             genres = [genre.text for genre in list(genres)]
+        else:
+            genres = []
 
         styles = release.find("styles")
         if styles is not None:
             styles = [style.text for style in list(styles)]
+        else:
+            styles = []
 
         country = release.find("country")
         if country is not None:
@@ -94,3 +102,23 @@ class GenreStats:
             "genres": genres,
             "styles": styles,
         }
+
+    def add_stats(self, data):
+        """
+        Adds the data from a specific release to the compiled stats of all other releases
+
+        :param data: data from a specific release (see parse_release above)
+        """
+        if data['year'] not in self.stats:
+            self.stats[data['year']] = {
+                'country': defaultdict(int),
+                'genres': defaultdict(int),
+                'styles': defaultdict(int),
+            }
+        year = data['year']
+        year['country'][data['country']] += 1
+
+        for style in data['styles']:
+            year['styles'][style] += 1
+        for genre in data['genres']:
+            year['genres'][genre] += 1
