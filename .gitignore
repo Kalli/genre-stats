@@ -1,4 +1,8 @@
+### Javascript ###
+node_modules/
+dist/
 
+.idea/
 data/
 scratchpad.*
 
