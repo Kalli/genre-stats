@@ -24,7 +24,8 @@ class GenreStats:
         for event, element in context:
             try:
                 if element.tag == "release" and event == "end":
-                    print(self.is_candidate(element))
+                    if self.is_candidate(element):
+                        data = self.parse_release(element)
             except ValueError, error:
                 print error
 
@@ -54,3 +55,42 @@ class GenreStats:
             if genres is not None:
                 is_candidate = is_candidate and self.genre in [genre.text for genre in list(genres)]
         return is_candidate
+
+    def parse_release(self, release):
+        """
+        Parses the information we need from a release
+
+        :param release: The release element
+
+        :return: A dictionary containing the following data (if it was available in the data):
+
+        * year - the year this release came out
+        * country - The country this release came out in
+        * genres - The genres this release belongs to
+        * styles - The styles this release belongs to
+        """
+
+        year = release.find("year")
+        if not year:
+            released = release.find('released')
+            if released is not None:
+                year = released.text[0:4]
+
+        genres = release.find("genres")
+        if genres is not None:
+            genres = [genre.text for genre in list(genres)]
+
+        styles = release.find("styles")
+        if styles is not None:
+            styles = [style.text for style in list(styles)]
+
+        country = release.find("country")
+        if country is not None:
+            country = country.text
+
+        return {
+            "year": year,
+            "country": country,
+            "genres": genres,
+            "styles": styles,
+        }
