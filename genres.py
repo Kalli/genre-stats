@@ -2,6 +2,10 @@
 # -*- coding: utf-8 -*-
 from lxml import etree
 from collections import defaultdict
+import json
+
+with open('./style-genre-map.json', 'r') as fp:
+    style_genre_map = json.load(fp)
 
 
 class GenreStats:
@@ -18,6 +22,8 @@ class GenreStats:
         :param genre:       If you only want data on a single genre
         """
         self.genre = genre
+        if self.genre:
+            self.styles = style_genre_map[self.genre]
         self.stats = {}
         context = etree.iterparse(xml_path, events=("start", "end"))
         context = iter(context)
@@ -111,14 +117,18 @@ class GenreStats:
         """
         if data['year'] not in self.stats:
             self.stats[data['year']] = {
-                'country': defaultdict(int),
+                'countries': defaultdict(int),
                 'genres': defaultdict(int),
                 'styles': defaultdict(int),
             }
-        year = data['year']
-        year['country'][data['country']] += 1
+        year = self.stats[data['year']]
+        year['countries'][data['country']] += 1
 
         for style in data['styles']:
-            year['styles'][style] += 1
+            if self.genre and style in self.styles:
+                year['styles'][style] += 1
         for genre in data['genres']:
             year['genres'][genre] += 1
+
+
+GenreStats('./data/discogs_20181001_releases.xml', genre='Electronic')
