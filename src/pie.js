@@ -3,7 +3,7 @@ export default function drawPie(styles) {
 	Object.keys(styles).forEach(function(key){
 		a.push([key, styles[key]])
 	})
-    console.log(a);
+
 	let dataTable = google.visualization.arrayToDataTable(a);
 
 	let options = {

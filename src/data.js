@@ -7,7 +7,7 @@
  * @param {number} end      The end of a range
  * @returns {object}        An object containing the sums of all the objects within the range
  */
-export default function range(data, start, end){
+export function range(data, start, end){
 
 	let filtered = Object.keys(data)
 		.filter( key => (key >= start && key <= end))
@@ -32,5 +32,37 @@ export default function range(data, start, end){
 	        }
 		})
 	})
+	return result;
+}
+
+
+/**
+ * Combines style stats based on hierarchical structure
+ *
+ * @param {object} styles       All styles
+ * @param {number} hierarchy    The hierarchical structure of styles
+ * @returns {object}            An array of arrays: [style, parent, count]
+ */
+export function calculateHierarchy(styles, hierarchy){
+	let result = [
+		['All', null, 0]
+	];
+
+	Object.keys(hierarchy).forEach(function(parent){
+		// push the parent entries
+		// get rid of cycles for instances where child is named the same as the parent... todo fix
+		let p = parent + " ";
+		result.push([p, 'All', 0]);
+	})
+
+	Object.keys(styles).forEach(function(style){
+		Object.keys(hierarchy).forEach(function(parent){
+			if (hierarchy[parent].includes(style)){
+				let p = parent + " ";
+				result.push([style, p, styles[style]])
+			}
+		})
+	})
+
 	return result;
 }
