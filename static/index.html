@@ -2,8 +2,24 @@
 <html>
     <head>
         <title>Discogs Genre Stats</title>
+        <script src="main.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.1/bootstrap-slider.min.js"></script>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.1/css/bootstrap-slider.css">
+        <link rel="stylesheet" href="slider.css">
     </head>
     <body>
-        <script src="main.js"></script>
+        <div class="container">
+            <h2>Discogs Genre Stats</h2>
+            <section class="range-slider">
+              <span class="rangeValues"></span>
+              <input class="slider" step="1" type="range">
+              <input class="slider" step="1" type="range">
+            </section>
+        </div>
     </body>
 </html>

@@ -10,6 +10,13 @@ module.exports = {
 	plugins: [
 		new CopyWebpackPlugin([
 			{ from: 'static' }
-		])
+		]),
+	    new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery"
+        }),
+		new webpack.ProvidePlugin({
+            d3: "d3"
+        })
 	]
 };
