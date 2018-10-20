@@ -9,7 +9,13 @@ export default function drawTreemap(styles) {
 		maxColor: '#FFB03B',
 		headerHeight: 15,
 		fontColor: 'black',
-		showScale: true
+		showScale: true,
+	    generateTooltip: showStaticTooltip
 	});
 
+    function showStaticTooltip(row) {
+    	let style = data.getValue(row, 0);
+    	let link = `https://www.discogs.com/style/${style}`;
+        return `<div class="treemap-tooltip"> Browse <a target="_blank" href="${link}">${style}</a> on Discogs</div>`;
+    }
 }
