@@ -1,4 +1,5 @@
 {
+"stats": {
   "1947": {
     "countries": {
       "Jamaica": 1
@@ -10271,4 +10272,5 @@
       "Witch House": 177
     }
   }
-}
+},
+"hierarchy": {"Techno": ["Acid", "Deep Techno", "Dub Techno", "Hard Techno", "Minimal", "Minimal Techno", "Techno", "Tribal"], "House": ["Acid House", "Ballroom", "Deep House", "Electro House", "Euro House", "Garage House", "Ghetto House", "Hard House", "Hip-House", "House", "Italo House", "Progressive House", "Tech House", "Tribal House", "Tropical House"], "Trance": ["Goa Trance", "Hard Trance", "Neo Trance", "Progressive Trance", "Psy-Trance", "Schranz", "Tech Trance", "Trance"], "Disco": ["Disco", "Disco Polo", "Euro-Disco", "Italo-Disco", "Italodance", "Nu-Disco"], "Breakbeat": ["Big Beat", "Breakbeat", "Breaks", "Progressive Breaks"], "Other": ["Beatdown", "Berlin-School", "Chillwave", "Chiptune", "Doomcore", "Downtempo", "Dub", "Dungeon Synth", "Freestyle", "Funkot", "Future Jazz", "Hands Up", "Hard Beat", "Jazzdance", "Latin", "Leftfield", "Lento Violento", "Makina", "Neofolk", "New Age", "Skweee", "Vaporwave"], "Hip Hop": ["Acid Jazz", "Hip Hop", "Trip Hop"], "UK": ["Bassline", "Broken Beat", "Drum n Bass", "Dubstep", "Grime", "Jungle", "Speed Garage", "UK Funky", "UK Garage"], "Ambient": ["Ambient", "Dark Ambient"], "80s": ["Dance-pop", "Darkwave", "EBM", "Eurobeat", "Eurodance", "Hi NRG", "Industrial", "New Beat", "New Wave", "Synth-pop", "Synthwave"], "Hardcore": ["Breakcore", "Donk", "Gabber", "Happy Hardcore", "Hardcore", "Hardstyle", "J-Core", "Jumpstyle", "Nerdcore Techno", "Speedcore"], "Electro": ["Baltimore Club", "Electro", "Electroclash", "Ghetto", "Ghettotech", "Juke"], "Experimental": ["Abstract", "Drone", "Experimental", "Glitch", "Harsh Noise Wall", "IDM", "Illbient", "Modern Classical", "Musique Concr\u00e8te", "Noise", "Power Electronics", "Rhythmic Noise", "Sound Collage", "Witch House"]}}

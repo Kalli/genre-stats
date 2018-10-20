@@ -16,7 +16,7 @@ module.exports = {
             jQuery: "jquery"
         }),
 		new webpack.ProvidePlugin({
-            d3: "d3"
+            google: "google"
         })
 	]
 };
