@@ -29,6 +29,7 @@ class GenreStats:
         context = etree.iterparse(xml_path, events=("start", "end"))
         context = iter(context)
         total, added = 0, 0
+        event, root = context.next()
         for event, element in context:
             try:
                 if element.tag == "release" and event == "end":
@@ -39,6 +40,7 @@ class GenreStats:
                         self.add_stats(data)
                     if total % 100000 == 0:
                         print('%s - parsed %d, added %d' %  (datetime.now().isoformat(), total, added))
+                root.clear()
             except ValueError, error:
                 print error
         with open('./data/results.json', 'w') as fp:
