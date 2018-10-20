@@ -14,21 +14,24 @@
     </head>
     <body>
         <div class="container">
-            <h2 class="text-center">Discogs Genre Stats</h2>
-            <div class="text-center">
+            <div class="row text-center main">
+                <h2 class="text-center">Discogs Genre Stats</h2>
+
                 <p class="lead">
                     Explore how the styles and genres of Electronic music have changed through history.
                 </p>
                 <p class="small">
                     Built using the <a href="https://discogs.com">Discogs</a> <a href="https://data.discogs.com">Data Dumps</a>.
                 </p>
+                <section class="range-slider center-block">
+                  <div class="rangeValues range-description"></div>
+                  <input class="slider" step="1" type="range">
+                  <input class="slider" step="1" type="range">
+                </section>
             </div>
-            <section class="range-slider center-block">
-              <span class="rangeValues"></span>
-              <input class="slider" step="1" type="range">
-              <input class="slider" step="1" type="range">
-            </section>
-            <div id="treemap" style="width: 900px; height: 500px;"></div>
+
+
+            <div id="treemap" style="width: 900px; height: 500px;" class="row center-block"></div>
             <div id="piechart" class="center-block" style="width: 1800px; height: 1000px;"></div>
         </div>
     </body>

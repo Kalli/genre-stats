@@ -14,7 +14,7 @@ $(document).ready(function(){
 
         google.charts.load('current', {'packages':['corechart', 'treemap']});
         google.charts.setOnLoadCallback(function(){drawCharts(subset)})
-		$('.rangeValues').text(min + " - " + max);
+		setText(min, max)
 
 	    function getVals(){
             // Get slider values
@@ -25,13 +25,19 @@ $(document).ready(function(){
 
             // Neither slider will clip the other, so make sure we determine which is larger
             if( new_min > new_max ){ let tmp = new_max; new_max = new_min; new_min = tmp; }
-
-            let displayElement = parent.getElementsByClassName("rangeValues")[0];
-            displayElement.innerHTML = new_min + " - " + new_max;
+			setText(new_min, new_max);
             subset = range(data, new_min, new_max);
             drawCharts(subset);
 
         }
+
+		function setText(min, max){
+            let displayElement = document.getElementsByClassName("rangeValues")[0];
+            let minLink = `<a href=https://www.discogs.com/search/?genre_exact=Electronic&type=release&year=${min}" target="_blank">${min}</a>`
+            let maxLink = `<a href=https://www.discogs.com/search/?genre_exact=Electronic&type=release&year=${max}" target="_blank">${max}</a>`
+		    let text = `Now exploring years ${minLink} - ${maxLink} in Electronic Music`;
+            displayElement.innerHTML = text;
+		}
 
         function drawCharts(subset){
         	drawPie(subset['styles']);

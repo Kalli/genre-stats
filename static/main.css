@@ -1,6 +1,6 @@
 section.range-slider {
     position: relative;
-    width: 200px;
+    width: 400px;
     height: 35px;
     text-align: center;
 }
@@ -10,12 +10,15 @@ section.range-slider input {
     position: absolute;
     overflow: hidden;
     left: 0;
-    top: 15px;
-    width: 200px;
+    top: 20px;
+    width: 400px;
     outline: none;
     height: 18px;
-    margin: 0;
-    padding: 0;
+    margin: 15px;
+}
+
+.main{
+    height:200px;
 }
 
 section.range-slider input::-webkit-slider-thumb {
@@ -52,4 +55,9 @@ section.range-slider input:last-of-type::-moz-range-track {
     background: #FFF;
     padding: 10px;
     border-radius: 10px;
+}
+
+.range-description{
+    font-size: medium;
+    padding: 10px;
 }
